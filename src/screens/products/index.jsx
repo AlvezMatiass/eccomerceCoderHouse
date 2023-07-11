@@ -1,5 +1,5 @@
 import { View, TouchableOpacity, Text, FlatList, Image } from 'react-native'
-import { Input } from '../../components';
+import { Input } from '../../constants';
 import { useState } from 'react';
 import { styles } from './style';
 import { Ionicons } from '@expo/vector-icons';

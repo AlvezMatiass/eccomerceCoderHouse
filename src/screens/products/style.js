@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     },
     goBackText: {
         fontSize: 14,
-        fontWeight: 'bold',
+        fontFamily: 'Inter-Bold',
         marginHorizontal: 6
     },
     productContent: {
@@ -39,10 +39,11 @@ export const styles = StyleSheet.create({
     },
     productsText: {
         marginTop: 6,
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: 'Inter-Regular'
     },
     productPrice: {
-        fontWeight: "bold",
+        fontFamily: 'Inter-Bold',
         fontSize: 15
     },
     notFound: {

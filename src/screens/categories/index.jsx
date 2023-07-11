@@ -1,5 +1,5 @@
 import { FlatList, SafeAreaView, View } from 'react-native';
-import { CategoryItem, Header } from '../../components';
+import { CategoryItem, Header } from '../../constants';
 import { styles } from './style';
 import CATEGORIES from '../../constants/data/categorias.json'
 

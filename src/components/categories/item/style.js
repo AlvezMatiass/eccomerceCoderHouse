@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     },
     categoryName: {
         fontSize: 22,
-        fontWeight: "bold",
+        fontFamily: 'Inter-Bold',
         color: COLORS.secundary,
         padding: 12,
         textShadowColor: 'rgba(0,0,0, 0.35)',

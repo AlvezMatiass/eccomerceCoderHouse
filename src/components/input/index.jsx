@@ -1,7 +1,5 @@
-import { TextInput, View } from "react-native";
-
+import { TextInput, View, useWindowDimensions } from "react-native";
 import { styles } from "./style";
-import { COLORS } from "../../themes";
 
 const Input = ({
     borderColor,
@@ -11,11 +9,16 @@ const Input = ({
     text,
     ...props
     }) => {
+
+    const { width } = useWindowDimensions()
+
+    const tabletMode = width > 640
+    
     return (
         <View style={styles.container}>
             <TextInput
             {...props}
-            style={styles.input}
+            style={tabletMode ? styles.inputTablet : styles.input}
             onFocus={onHandleFocus}
             onBlur={onHandleBlur}
             onChangeText={onHandleChangeText}

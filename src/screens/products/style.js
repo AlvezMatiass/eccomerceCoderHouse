@@ -22,29 +22,14 @@ export const styles = StyleSheet.create({
         fontFamily: 'Inter-Bold',
         marginHorizontal: 6
     },
+    goBackTextTablet: {
+        fontSize: 21,
+        fontFamily: 'Inter-Bold',
+        marginHorizontal: 6
+    },
     productContent: {
         flex: 1,
         marginHorizontal: 12,
-    },
-    productContainer:{
-        alignItems: "center",
-        width: '45%',
-        marginHorizontal: 10,
-        padding: 12,
-        backgroundColor: COLORS.secundary
-    },
-    productImage:{
-        width: '100%',
-        height: 140,
-    },
-    productsText: {
-        marginTop: 6,
-        fontSize: 14,
-        fontFamily: 'Inter-Regular'
-    },
-    productPrice: {
-        fontFamily: 'Inter-Bold',
-        fontSize: 15
     },
     notFound: {
         flex: 1,
@@ -52,6 +37,9 @@ export const styles = StyleSheet.create({
     },
     notFoundText: {
         fontSize: 16
+    },
+    notFoundTablet: {
+        fontSize: 28,
     },
     closeInput: {
         position: "absolute",

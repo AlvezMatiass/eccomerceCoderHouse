@@ -13,5 +13,17 @@ export const styles = StyleSheet.create({
         fontSize: 24,
         fontFamily: 'Inter-Medium',
         color: COLORS.secundary,
-    }
+    },
+    containerTablet: {
+        marginTop: StatusBar.currentHeight,
+        backgroundColor: COLORS.background,
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    titleTablet: {
+        fontSize: 38,
+        fontFamily: 'Inter-Bold',
+        color: COLORS.secundary,
+    },
 })

@@ -1,9 +1,13 @@
 import { FlatList, SafeAreaView, View } from 'react-native';
-import { CategoryItem, Header } from '../../constants';
+import { CategoryItem } from '../../components'; 
 import { styles } from './style';
 import CATEGORIES from '../../constants/data/categorias.json'
 
-const Categories = ({ onSelectCategory }) => {
+const Categories = ({ navigation }) => {
+  
+  const onSelectCategory = ({categoryId}) => {
+    navigation.navigate('Products', {categoryId})
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -12,7 +16,9 @@ const Categories = ({ onSelectCategory }) => {
           style={styles.categoryContainer}
           contentContainerStyle={styles.listCategory}
           data={CATEGORIES}
-          renderItem={({ item }) => <CategoryItem {...item} onSelectCategory={onSelectCategory} />}
+          renderItem={({ item }) => <CategoryItem {...item} onSelectCategory={() => {
+            onSelectCategory({categoryId: item.id, name: item.name})
+          }} />}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
           />

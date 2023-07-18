@@ -1,26 +1,21 @@
-import { View, TouchableOpacity, Text, FlatList, Image } from 'react-native'
-import { Input } from '../../constants';
+import { View, Text, FlatList, useWindowDimensions, Image } from 'react-native'
+import { Input, ProductItem } from '../../components/index';
 import { useState } from 'react';
 import { styles } from './style';
 import { Ionicons } from '@expo/vector-icons';
 import PRODUCTS from '../../constants/data/products.json'
 
-const Products = ({ onHandleGoBack, categoryId }) => {
+const Products = ({ navigation, route }) => {
+
+    const { categoryId } = route.params;
 
     const [search, setSearch] = useState('')
     const [borderColor, setBorderColor] = useState('')
     const [filteredProduct, setFilteredProduct] = useState([])
 
-    const onHandleBlur = () => {
-
-    }
     const onHandleChangeText = (text) => {
         setSearch(text)
         filterBySearch(text)
-    }
-
-    const onHandleFocus = () => {
-
     }
 
     const filteredProductsByCategory = PRODUCTS.filter((product) => product.categoryId === categoryId);
@@ -40,13 +35,19 @@ const Products = ({ onHandleGoBack, categoryId }) => {
         setFilteredProduct([])
     }
 
+    const onSelectProduct = ({productId}) => {
+        navigation.navigate('ProductDetail', {productId})
+    }
+
+    const { width } = useWindowDimensions()
+
+    const tabletMode = width > 640
+
     return(
         <View style={styles.container}>
             <View style={styles.inputContainer}>
                 <Input 
                 onHandleChangeText={onHandleChangeText}
-                onHandleBlur={onHandleBlur}
-                onHandleFocus={onHandleFocus}
                 value={search}
                 borderColor={borderColor}
                 placeholder='search'
@@ -63,27 +64,16 @@ const Products = ({ onHandleGoBack, categoryId }) => {
             numColumns={2}
             showsVerticalScrollIndicator={false}
             renderItem={({item}) => (
-                <View style={styles.productContainer}>
-                    <Image source={{uri: item.image}} style={styles.productImage}/>
-                    <View style={styles.productDetail}>
-                        <Text style={styles.productsText} numberOfLines={1} ellipsizeMode='tail'>{item.name}</Text>
-                        <Text style={styles.productPrice}>{`${item.currency.code} ${item.price}`}</Text>
-                    </View>
-                    
-                </View>
+                <ProductItem item={item} onSelectProduct={onSelectProduct}/>
             )}
             />
             {
                 filteredProduct.length === 0 && search.length > 0 && (
                     <View style={styles.notFound}>
-                        <Text style={styles.notFoundText}>No products found</Text>
+                        <Text style={tabletMode ? styles.notFoundTablet : styles.notFoundText}>No products found</Text>
                     </View>
                 )
             }
-            <TouchableOpacity onPress={ onHandleGoBack } style={styles.buttonGoBack}>
-                <Ionicons name="arrow-back" size={20} color="black" />
-                <Text style={styles.goBackText}>Go back</Text>
-            </TouchableOpacity>
         </View>
     )
 }

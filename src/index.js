@@ -1,10 +1,8 @@
 import { ActivityIndicator, SafeAreaView, View} from 'react-native';
-import { Header } from './constants';
 import { styles } from './style';
-import { Categories, Products } from './screens';
-import { useState } from 'react';
 import { useFonts } from 'expo-font';
 import { COLORS } from './themes';
+import RootNavigator from './navigation';
 
 export default function App() {
 
@@ -15,21 +13,23 @@ export default function App() {
     'Inter-Light': require('../assets/fonts/Inter-Light.ttf')
   })
 
-  const [isCategorySelected, setIsCategorySelected] = useState(false)
+ // const {width} = useWindowDimensions()
 
-  const [selectedCategory, setSelectedCategory] = useState(null)
+ // const [isCategorySelected, setIsCategorySelected] = useState(false)
 
-  const headerTitle = isCategorySelected ? 'Products' : 'Categories'
+ // const [selectedCategory, setSelectedCategory] = useState(null)
 
-  const onHandleSelectedCategory = (categoryId) => {
-    setSelectedCategory(categoryId)
-    setIsCategorySelected(!isCategorySelected)
-  }
+ // const headerTitle = isCategorySelected ? 'Products' : 'Categories'
 
-  const onHandleNavigate = () => {
-    setIsCategorySelected(!isCategorySelected)
-    setSelectedCategory(null)
-  }
+ // const onHandleSelectedCategory = (categoryId) => {
+ //   setSelectedCategory(categoryId)
+ //   setIsCategorySelected(!isCategorySelected)
+ // }
+
+ // const onHandleNavigate = () => {
+ //   setIsCategorySelected(!isCategorySelected)
+ //   setSelectedCategory(null)
+ // }
 
   if(!loaded) {
     return  (
@@ -41,15 +41,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-        <View style={styles.container}>
-          <Header title={headerTitle}/>
-          { isCategorySelected ? (
-            <Products onHandleGoBack={onHandleNavigate} categoryId={selectedCategory} />
-          ) : (
-            <Categories onSelectCategory={onHandleSelectedCategory}/>
-          )
-          }
-        </View>
+        <RootNavigator />
     </SafeAreaView>
   );
 }

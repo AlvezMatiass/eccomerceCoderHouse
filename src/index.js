@@ -3,6 +3,8 @@ import { styles } from './style';
 import { useFonts } from 'expo-font';
 import { COLORS } from './themes';
 import RootNavigator from './navigation';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 export default function App() {
 
@@ -40,8 +42,10 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-        <RootNavigator />
-    </SafeAreaView>
+    <Provider store={store} >
+      <SafeAreaView style={styles.container}>
+          <RootNavigator />
+      </SafeAreaView>
+    </Provider>
   );
 }

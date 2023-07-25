@@ -1,9 +1,9 @@
-import { View, Text, FlatList, useWindowDimensions, Image } from 'react-native'
+import { View, Text, FlatList, useWindowDimensions} from 'react-native'
 import { Input, ProductItem } from '../../components/index';
 import { useState } from 'react';
 import { styles } from './style';
 import { Ionicons } from '@expo/vector-icons';
-import PRODUCTS from '../../constants/data/products.json'
+import { useSelector } from 'react-redux';
 
 const Products = ({ navigation, route }) => {
 
@@ -13,12 +13,14 @@ const Products = ({ navigation, route }) => {
     const [borderColor, setBorderColor] = useState('')
     const [filteredProduct, setFilteredProduct] = useState([])
 
+    const products = useSelector((state) => state.products.data)
+
     const onHandleChangeText = (text) => {
         setSearch(text)
         filterBySearch(text)
     }
 
-    const filteredProductsByCategory = PRODUCTS.filter((product) => product.categoryId === categoryId);
+    const filteredProductsByCategory = products.filter((product) => product.categoryId === categoryId);
 
     const filterBySearch = (query) => {
         let updateProductList = [...filteredProductsByCategory]

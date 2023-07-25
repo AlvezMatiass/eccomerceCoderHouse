@@ -40,4 +40,18 @@ export const styles = StyleSheet.create({
         color: COLORS.white,
         borderRadius: 6
     },
+    containerButton: {
+        marginTop: 12
+    },
+    buttomAddToCart: {
+        width: '100%',
+        backgroundColor: COLORS.secundary,
+        padding: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+    },
+    addToCartText: {
+        fontFamily: 'Inter-Medium'
+    },
 })

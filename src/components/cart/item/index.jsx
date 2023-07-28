@@ -12,7 +12,9 @@ const CartItem = ({
     currency,
     stock,
     quantity,
-    ...props
+    onIncreaseItem,
+    onDecreaseItem,
+    onRemoveItem
 }) => {
   return (
      <View style={styles.container}>
@@ -21,10 +23,10 @@ const CartItem = ({
             <Text style={styles.price}>{`${currency.code} ${price}`}</Text>
             <Text style={styles.qty}>{`qty: ${quantity} stock: ${stock}`}</Text>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.addButton} onPress={() => {}} >
+                <TouchableOpacity style={styles.addButton} onPress={() => onIncreaseItem(id)} >
                     <Text style={styles.addButtonText}>+</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.removeButton} onPress={() => {}} >
+                <TouchableOpacity style={styles.removeButton} onPress={() => onDecreaseItem(id)} >
                     <Text style={styles.removeButtonText}>-</Text>
                 </TouchableOpacity>
             </View>
@@ -33,7 +35,7 @@ const CartItem = ({
             <Image source={{uri: image }} style={styles.image} />
         </View>
         <View style={styles.deleteContainer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => onRemoveItem(id)}>
                 <Ionicons name='trash-outline' size={20} color={COLORS.black} />
             </TouchableOpacity>
         </View>

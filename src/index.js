@@ -14,25 +14,7 @@ export default function App() {
     'Inter-Bold': require('../assets/fonts/Inter-Bold.ttf'),
     'Inter-Light': require('../assets/fonts/Inter-Light.ttf')
   })
-
- // const {width} = useWindowDimensions()
-
- // const [isCategorySelected, setIsCategorySelected] = useState(false)
-
- // const [selectedCategory, setSelectedCategory] = useState(null)
-
- // const headerTitle = isCategorySelected ? 'Products' : 'Categories'
-
- // const onHandleSelectedCategory = (categoryId) => {
- //   setSelectedCategory(categoryId)
- //   setIsCategorySelected(!isCategorySelected)
- // }
-
- // const onHandleNavigate = () => {
- //   setIsCategorySelected(!isCategorySelected)
- //   setSelectedCategory(null)
- // }
-
+  
   if(!loaded) {
     return  (
       <View style={styles.loaderContainer}>

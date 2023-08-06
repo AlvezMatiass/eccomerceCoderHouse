@@ -54,4 +54,9 @@ export const styles = StyleSheet.create({
     addToCartText: {
         fontFamily: 'Inter-Medium'
     },
+    loaderContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignContent: "center"
+    }
 })

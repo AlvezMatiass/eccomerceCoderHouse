@@ -1,6 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Categories, Products, ProductDetail } from "../screens";
+import { Categories, Products, ProductDetail, Setting, Address } from "../screens";
 import { COLORS } from "../themes";
+import { TouchableOpacity } from "react-native";
+import { Ionicons } from '@expo/vector-icons'
+import { styles } from "../components/header/style";
 
 const Stack = createNativeStackNavigator()
 
@@ -8,7 +11,7 @@ function ShopNavigator() {
     return(
         <Stack.Navigator 
         initialRouteName="Categories"
-        screenOptions={{
+        screenOptions={({navigation}) => ({
             headerStyle: {
                 backgroundColor: COLORS.secundary
             },
@@ -16,12 +19,21 @@ function ShopNavigator() {
                 fontFamily: 'Inter-Bold',
                 fontSize: 18
             },
-            animation: 'slide_from_right'
-        }}
+            animation: 'slide_from_right',
+            headerRight: () => (
+                <TouchableOpacity style={styles.settingIcon} onPress={() => navigation.navigate('Setting')}>
+                    <Ionicons name="settings-outline" size={22} color={COLORS.black} />
+                </TouchableOpacity>
+            )
+        })}
         >
             <Stack.Screen name="Categories" component={Categories}/>
             <Stack.Screen name="Products" component={Products}/>
             <Stack.Screen name="ProductDetail" component={ProductDetail}/>
+            <Stack.Screen name="Setting" component={Setting} options={() => ({
+                headerRight: null,
+                title: 'Settings'
+            })}/>
         </Stack.Navigator>
     )
 }

@@ -3,16 +3,24 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import productSlices from "./products/productSlices";
 import categorieSlices from "./categories/categorieSlices";
 import cartSlices from "./cart/cartSlices";
+import authReducer from './auth/auth.slice'
 import { categoriesApi } from "./categories/api";
+import { productsApi } from "./products/api";
+import { ordersApi } from "./orders/api";
+import { authApi } from "./auth/api";
 
 export const store = configureStore({
     reducer: {
         products: productSlices,
         categories: categorieSlices,
         cart: cartSlices,
-        [categoriesApi.reducerPath]: categoriesApi.reducer
+        auth: authReducer,
+        [categoriesApi.reducerPath]: categoriesApi.reducer,
+        [productsApi.reducerPath]: productsApi.reducer,
+        [ordersApi.reducerPath]: ordersApi.reducer,
+        [authApi.reducerPath]: authApi.reducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(categoriesApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(categoriesApi.middleware, productsApi.middleware, ordersApi.middleware, authApi.middleware),
 })
 
 setupListeners(store.dispatch)

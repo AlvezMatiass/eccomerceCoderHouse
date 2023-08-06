@@ -1,26 +1,27 @@
-import { View, Text, FlatList, useWindowDimensions} from 'react-native'
+import { View, Text, FlatList, useWindowDimensions, ActivityIndicator} from 'react-native'
 import { Input, ProductItem } from '../../components/index';
 import { useState } from 'react';
 import { styles } from './style';
 import { Ionicons } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
+import { useGetProductsByCategoryQuery } from '../../store/products/api';
+import { COLORS } from '../../themes';
 
 const Products = ({ navigation, route }) => {
 
     const { categoryId } = route.params;
 
+    const { data, error , isLoading } = useGetProductsByCategoryQuery(categoryId)
+
     const [search, setSearch] = useState('')
     const [borderColor, setBorderColor] = useState('')
     const [filteredProduct, setFilteredProduct] = useState([])
-
-    const products = useSelector((state) => state.products.data)
 
     const onHandleChangeText = (text) => {
         setSearch(text)
         filterBySearch(text)
     }
 
-    const filteredProductsByCategory = products.filter((product) => product.categoryId === categoryId);
+    const filteredProductsByCategory = data?.filter((product) => product.categoryId === categoryId);
 
     const filterBySearch = (query) => {
         let updateProductList = [...filteredProductsByCategory]
@@ -44,6 +45,14 @@ const Products = ({ navigation, route }) => {
     const { width } = useWindowDimensions()
 
     const tabletMode = width > 640
+
+    if(isLoading) {
+        return  (
+          <View style={styles.loaderContainer}>
+            <ActivityIndicator color={COLORS.secundary}/>
+          </View>
+        )
+    }
 
     return(
         <View style={styles.container}>

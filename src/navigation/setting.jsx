@@ -5,9 +5,16 @@ const Stack = createNativeStackNavigator();
 
 function SettingNavigator() {
     return (
-        <Stack.Navigator initialRouteName='Setting' screenOptions={{headerShown: false}}>
-            <Stack.Screen name="Setting" component={ Setting } />
-            <Stack.Screen name="Profile" component={ Profile } />
+        <Stack.Navigator initialRouteName='SettingMenu'>
+            <Stack.Screen name="SettingMenu" component={ Setting } options={{
+                title: 'Settings'
+            }}/>
+            <Stack.Screen name="Profile" component={ Profile } options={{
+                animation: 'slide_from_right'
+            }}/>
+            <Stack.Screen name="Address" component={ Address } options={{
+                animation: 'slide_from_right'
+            }}/>
         </Stack.Navigator>
     )
 }

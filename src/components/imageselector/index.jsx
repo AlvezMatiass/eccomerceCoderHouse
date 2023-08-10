@@ -2,12 +2,15 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styles } from './style';
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '../../themes';
-import { requestCameraPermissionsAsync, launchCameraAsync } from 'expo-image-picker'
+import { requestMediaLibraryPermissionsAsync, launchImageLibraryAsync } from 'expo-image-picker'
+import { useState } from 'react';
 
-const ImageSelector = ({ image, onSelect }) => {
+const ImageSelector = ({ profileImage, onSelect }) => {
+
+    const [ image, setImage ] = useState(null)
 
     const verifyPermissions = async () => {
-        const { status } = await requestCameraPermissionsAsync();
+        const { status } = await requestMediaLibraryPermissionsAsync();
         if ( status !== 'granted') {
             Alert.alert(
                 'Permission Denied',
@@ -20,29 +23,32 @@ const ImageSelector = ({ image, onSelect }) => {
     }
 
     const onHandlerPhoto = async () => {
-        const isCameraPermissions = await verifyPermissions()
-        if (!isCameraPermissions) return;
-        const result = await launchCameraAsync({
+        const isMediaPermissions = await verifyPermissions()
+        if (!isMediaPermissions) return;
+        const result = await launchImageLibraryAsync({
             mediaTypes: 'Images',
             allowsEditing: true,
-            aspect: [16, 9],
+            aspect: [1, 1],
             quality: 0.5,
             base64: true
         })
         if (result.canceled) {
             console.log("Selección de imagen cancelada");
         } else {
-            console.log("Imagen seleccionada correctamente");
         }
-        console.warn({result})
+
+        onSelect({uri: result.assets[0].uri, base64: result.assets[0].base64})
+        setImage(result.assets[0].uri)
     }
+
+    
 
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.contentImage} onPress={onHandlerPhoto}>
                 {
-                    image ? (
-                        <Image source={{uri: image}} style={styles.imageProfile} />
+                    ( image || profileImage ) ? (
+                        <Image source={{uri: image || profileImage }} style={styles.imageProfile} resizeMode='contain' />
                     ) : (
                         <Ionicons name='camera' size={30} color={COLORS.text} />
                 )}

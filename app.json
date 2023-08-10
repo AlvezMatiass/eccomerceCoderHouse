@@ -39,6 +39,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "assets": {
+      "canceled": false,
+      "cancelled": false
     }
   }
 }

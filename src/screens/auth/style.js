@@ -8,32 +8,22 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     content: {
-        width: '70%'
+        width: '70%',
+        height: 240
     },
     header: {
         textAlign: 'center',
         fontFamily: 'Inter-Bold',
         fontSize: 20,
-    },
-    label: {
-        fontSize: 14,
-        fontFamily: 'Inter-Medium',
-        marginTop: 12
-    },
-    input: {
-        fontFamily: 'Inter-Regular',
-        height: 40,
-        width: '90%',
-        borderBottomColor: COLORS.text,
-        borderBottomWidth: .5
+        marginBottom: 14
     },
     buttonContainer: {
-           marginTop: 18
+           marginTop: 4
     },
     button: {
         backgroundColor: COLORS.text,
-        paddingVertical: 4,
-        paddingHorizontal: 12
+        paddingVertical: 6,
+        paddingHorizontal: 24
     },
     buttonText: {
         fontSize: 15,

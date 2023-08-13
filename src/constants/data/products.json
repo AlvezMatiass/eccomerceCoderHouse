@@ -5,7 +5,7 @@
         "name": "Samsung Galaxy S23 Ultra",
         "description": "Samsung Galaxy S23 Ultra 5G 256GB",
         "price": 1250,
-        "image": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/products%2Fsamsung-galaxy-s23-ultra.png?alt=media&token=64c9c470-e5b9-44d0-939e-38bad88555c5",
+        "image": "https://samsungar.vtexassets.com/arquivos/ids/188347-800-auto?width=800&height=auto&aspect=true",
         "currency": {
             "symbol": "$",
             "code": "USD",
@@ -38,7 +38,7 @@
         "name": "Iphone 14 Pro Max",
         "description": "Iphone 14 Pro Max 256GB",
         "price": 1500,
-        "image": "https://firebasestorage.googleapis.com/v0/b/ecommerce-app-c91d9.appspot.com/o/products%2Fiphone-14-pro-max.png?alt=media&token=313523a6-6c31-42c6-9034-7cb32b7c56a1",
+        "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-silver-select?wid=940&hei=1112&fmt=png-alpha&.v=1663364576311",
         "currency": {
             "symbol": "$",
             "code": "USD",
